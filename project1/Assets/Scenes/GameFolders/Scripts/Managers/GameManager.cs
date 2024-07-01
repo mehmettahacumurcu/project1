@@ -38,7 +38,7 @@ namespace project1.managers
            OnSuccess?.Invoke();
         }
 
-        public void OnLevelWasLoaded(int level = 0)
+        public void LoadLevelScene(int level = 0)
         {
             StartCoroutine(LoadLevelSceneAsync(level));
         }
@@ -46,6 +46,16 @@ namespace project1.managers
         private IEnumerator LoadLevelSceneAsync(int levelindex = 0)
         {
             yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + levelindex);
+        }
+
+        public void LoadMenuScene()
+        {
+            StartCoroutine(LoadMenuSceneAsync());
+        }
+
+        private IEnumerator LoadMenuSceneAsync()
+        {
+            yield return SceneManager.LoadSceneAsync("Menu");
         }
 
         public void Exit()
