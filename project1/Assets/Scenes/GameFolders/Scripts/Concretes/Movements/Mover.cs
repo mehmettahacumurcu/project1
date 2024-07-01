@@ -6,7 +6,7 @@ namespace project1.movements
 {
     public class Mover
     {
-        Rigidbody rigidBody;
+        public Rigidbody rigidBody;
 
         public Mover(Rigidbody rigidbody)
         {
