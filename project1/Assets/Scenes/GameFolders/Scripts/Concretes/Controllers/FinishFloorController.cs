@@ -14,7 +14,7 @@ namespace project1.controllers
         {
             PlayerController playerController = collision.collider.GetComponent<PlayerController>();
 
-            if (playerController == null || playerController.canMove) return;
+            if (playerController == null ) return;
             
 
             if(collision.GetContact(0).normal.y == -1)

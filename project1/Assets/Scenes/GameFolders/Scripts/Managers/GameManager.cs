@@ -36,6 +36,7 @@ namespace project1.managers
         public void Success()
         {
            OnSuccess?.Invoke();
+           Debug.Log("Success Invoked.");
         }
 
         public void LoadLevelScene(int level = 0)
