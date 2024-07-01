@@ -3,6 +3,7 @@ using project1.managers;
 using project1.movements;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     bool isForceUp;
     float leftRight;
     bool ableToMove;
+    public bool canMove => ableToMove;
 
 
     private void Awake()

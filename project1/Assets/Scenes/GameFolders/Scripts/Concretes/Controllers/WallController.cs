@@ -10,9 +10,9 @@ namespace project1.controllers
     {
         private void OnCollisionEnter(Collision collision)
         {
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            PlayerController playerController = collision.collider.GetComponent<PlayerController>();
 
-            if (playerController != null) 
+            if (playerController != null && playerController.canMove) 
             {
                 GameManager.Instance.GameOver();
             }

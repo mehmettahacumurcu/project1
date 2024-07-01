@@ -12,9 +12,9 @@ namespace project1.controllers
 
         private void OnCollisionEnter(Collision collision)
         {
-            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            PlayerController playerController = collision.collider.GetComponent<PlayerController>();
 
-            if (playerController == null) return;
+            if (playerController == null || playerController.canMove) return;
             
 
             if(collision.GetContact(0).normal.y == -1)
