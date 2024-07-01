@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         GameManager.Instance.OnGameOver += HandleOnEventTrigger;
+        GameManager.Instance.OnSuccess += HandleOnEventTrigger;
+
     }
 
     private void HandleOnEventTrigger()
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         GameManager.Instance.OnGameOver -= HandleOnEventTrigger;
+        GameManager.Instance.OnSuccess -= HandleOnEventTrigger;
     }
 
     private void FixedUpdate()

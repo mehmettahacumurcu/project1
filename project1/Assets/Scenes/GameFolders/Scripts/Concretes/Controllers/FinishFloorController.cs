@@ -20,6 +20,7 @@ namespace project1.controllers
             if(collision.GetContact(0).normal.y == -1)
             {
                 particles.gameObject.SetActive(true);
+                GameManager.Instance.Success();
             }
             else
             {
