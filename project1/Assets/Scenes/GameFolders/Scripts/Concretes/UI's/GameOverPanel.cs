@@ -11,6 +11,8 @@ namespace project1.UIs
         public void YesClicked()
         {
             GameManager.Instance.LoadLevelScene();
+            if(this.gameObject.activeSelf)
+                { this.gameObject.SetActive(false); }
         }
 
         public void NoClicked()

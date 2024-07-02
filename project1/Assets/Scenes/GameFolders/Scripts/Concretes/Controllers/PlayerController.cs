@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!ableToMove) return;
+        if (!canMove) return;
 
         if (input.isForceUp && !fuel.IsEmpty)
         {
@@ -49,12 +49,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnGameOver += HandleOnEventTrigger;
-        GameManager.Instance.OnSuccess += HandleOnEventTrigger;
-
+        GameManager.Instance.OnGameOver += HandleOnGameOver;
+        GameManager.Instance.OnSuccess += HandleOnSuccess;
     }
 
-    private void HandleOnEventTrigger()
+    private void HandleOnGameOver()
+    {
+        ableToMove = false;
+        isForceUp = false;
+        leftRight = 0f;
+        fuel.FuelIncrease(0f);
+    }
+
+    private void HandleOnSuccess()
     {
         ableToMove = false;
         isForceUp = false;
@@ -64,8 +71,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Instance.OnGameOver -= HandleOnEventTrigger;
-        GameManager.Instance.OnSuccess -= HandleOnEventTrigger;
+        GameManager.Instance.OnGameOver -= HandleOnGameOver;
+        GameManager.Instance.OnSuccess -= HandleOnSuccess;
     }
 
     private void FixedUpdate()

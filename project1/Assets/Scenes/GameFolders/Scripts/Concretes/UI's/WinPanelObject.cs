@@ -14,12 +14,12 @@ namespace project1.UIs
 
         private void Awake()
         {
-            if(winPanel.activeSelf)
+            if (winPanel.activeSelf)
             {
                 winPanel.SetActive(false);
             }
 
-            if(nextLevelButton.gameObject.activeSelf)
+            if (nextLevelButton.gameObject.activeSelf)
             {
                 nextLevelButton.gameObject.SetActive(false);
             }

@@ -1,3 +1,4 @@
+using project1.abstracts.utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,38 +6,27 @@ using UnityEngine.SceneManagement;
 
 namespace project1.managers
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : SingletonHandler<GameManager>
     {
         public event System.Action OnGameOver;
         public event System.Action OnSuccess;
-        public static GameManager Instance { get; private set; }
 
         private void Awake()
         {
-            SingletonPatternHandler();
-        }
-
-        private void SingletonPatternHandler()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(this.gameObject);
-            }
-            else
-            {
-                Destroy(this.gameObject);
-            }
+            SingletonPatternHandler(this);
+            
         }
 
         public void GameOver()
         {
             OnGameOver?.Invoke();
+            Debug.Log("Gameover Invoked.");
         }
+
         public void Success()
         {
-           OnSuccess?.Invoke();
-           Debug.Log("Success Invoked.");
+            OnSuccess?.Invoke();
+            Debug.Log("Success Invoked.");
         }
 
         public void LoadLevelScene(int level = 0)
@@ -46,7 +36,9 @@ namespace project1.managers
 
         private IEnumerator LoadLevelSceneAsync(int levelindex = 0)
         {
+            SoundManager.Instance.StopSound(1);
             yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + levelindex);
+            SoundManager.Instance.PlaySound(2);
         }
 
         public void LoadMenuScene()
@@ -56,7 +48,9 @@ namespace project1.managers
 
         private IEnumerator LoadMenuSceneAsync()
         {
+            SoundManager.Instance.StopSound(2);
             yield return SceneManager.LoadSceneAsync("Menu");
+            SoundManager.Instance.PlaySound(1);
         }
 
         public void Exit()

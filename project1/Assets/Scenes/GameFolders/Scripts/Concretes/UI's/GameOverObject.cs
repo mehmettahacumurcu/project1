@@ -29,16 +29,16 @@ namespace project1.UIs
             GameManager.Instance.OnGameOver += HandleOnGameOver;
         }
 
+        private void OnDisable()
+        {
+            GameManager.Instance.OnGameOver -= HandleOnGameOver;
+        }
+
         private void HandleOnGameOver()
         {
             gameOverPanel.SetActive(true);
             tryAgainButton.gameObject.SetActive(true);
             exitButton.gameObject.SetActive(true);
-        }
-
-        private void OnDisable()
-        {
-            GameManager.Instance.OnGameOver -= HandleOnGameOver;
         }
     }
 

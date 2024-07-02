@@ -12,7 +12,7 @@ namespace project1.abstracts.controllers
         {
             PlayerController playerController = collision.collider.GetComponent<PlayerController>();
 
-            if (playerController != null && playerController.canMove) 
+            if (playerController != null) 
             {
                 GameManager.Instance.GameOver();
             }
